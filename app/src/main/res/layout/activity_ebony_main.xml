@@ -1,0 +1,18 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vu.co.mikeroll.ebony.app.EbonyMain">
+
+    <ImageView
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+
+    <fragment
+            android:id="@+id/todo_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="vu.co.mikeroll.ebony.app.TodoListFragment"/>
+</FrameLayout>

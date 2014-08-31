@@ -1,6 +1,5 @@
 package vu.co.mikeroll.ebony.app
 
-import android.app.Fragment
 import android.os.Bundle
 import android.app.ListFragment
 import vu.co.mikeroll.ebony.data.TodoList
@@ -12,7 +11,7 @@ public class TodoListFragment() : ListFragment() {
         super.onActivityCreated(savedInstanceState)
         val input : String = """
           [
-             { "c": "Entry 1", "i": false },
+             { "c": "Entry 1\nlol\nlol\nlol", "i": false },
              { "c": "Entry 2", "i": true },
              { "c": "Entry 3" }
           ]
