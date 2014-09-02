@@ -7,9 +7,9 @@ private val DATABASE_VERSION: Int = 1
 
 private val SQL_CREATE_TABLE: String =
         "CREATE TABLE " + Todos.TABLE + " (" +
-                Todos._ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
-                Todos.KEY_CONTENT + "TEXT" +
-                Todos.KEY_IS_IMPORTANT + "INTEGER" +
+                Todos._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                Todos.KEY_CONTENT + " TEXT," +
+                Todos.KEY_IS_IMPORTANT + " INTEGER" +
         ")"
 
 private val SQL_DROP_TABLE: String =
