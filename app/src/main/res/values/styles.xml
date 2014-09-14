@@ -15,4 +15,12 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <!-- Main ListView -->
+    <style name="Ebony.TodoList" parent="android:Theme.Holo.Light">
+        <item name="android:padding">5dp</item>
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0dp</item>
+    </style>
+
+
 </resources>

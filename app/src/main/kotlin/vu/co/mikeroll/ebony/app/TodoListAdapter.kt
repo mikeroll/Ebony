@@ -1,22 +1,17 @@
 package vu.co.mikeroll.ebony.app
 
-import android.view.View
-import android.view.ViewGroup
+import android.widget.ResourceCursorAdapter
 import android.content.Context
-import android.view.LayoutInflater
-import android.widget.EditText
-import vu.co.mikeroll.ebony.data.TodoList
-import android.widget.ArrayAdapter
-import vu.co.mikeroll.ebony.data.TodoItem
+import android.view.View
+import android.database.Cursor
+import android.widget.CheckBox
+import android.widget.TextView
 
-public class TodoListAdapter(context: Context, val tasks: TodoList)
-             : ArrayAdapter<TodoItem>(context, R.layout.todo_item, R.id.todo_text, tasks) {
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
-        var view = convertView
-        if (view == null) {
-            view = LayoutInflater.from(getContext()!!).inflate(R.layout.todo_item, parent, false)
-        }
-        (view!!.findViewById(R.id.todo_text) as EditText).setText(tasks[position].content)
-        return view
+public class TodoListAdapter(ctx: Context) : ResourceCursorAdapter(ctx, R.layout.todo_item, null) {
+    override fun bindView(view: View, context: Context?, cursor: Cursor) {
+        val content = cursor.getString(1)
+        (view.findViewById(R.id.todo_text) as TextView?)?.setText(content)
+        val isImportant = cursor.getInt(2) == 1
+        (view.findViewById(R.id.todo_important_btn) as CheckBox?)?.setChecked(isImportant)
     }
 }

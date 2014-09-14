@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.database.Cursor
 import android.content.ContentValues
-import vu.co.mikeroll.ebony.app.TodoItem
 
 public object Database {
 
