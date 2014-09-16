@@ -56,5 +56,8 @@ public class TodoListFragment() : Fragment() {
             Database.upsert(items[0]!!)
             return null
         }
+        override fun onPostExecute(result: Void) {
+            load()
+        }
     }.execute(item)
 }
