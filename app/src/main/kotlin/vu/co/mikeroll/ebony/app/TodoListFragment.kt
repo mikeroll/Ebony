@@ -10,6 +10,8 @@ import android.widget.ListView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.View
+import android.widget.AdapterView
+import android.widget.Adapter
 
 public class TodoListFragment() : Fragment() {
 
@@ -28,9 +30,17 @@ public class TodoListFragment() : Fragment() {
         Database.connect(ctx)
         adapter = TodoListAdapter(ctx)
         listView?.setAdapter(adapter!!)
+        listView?.setOnItemClickListener { (lv, v, pos, id) -> showTodoDialog(lv, pos) }
         load()
     }
 
+    fun showTodoDialog(lv: AdapterView<out Adapter?>, pos: Int) {
+        val row = lv.getItemAtPosition(pos) as Cursor
+        val item = TodoItem(row)
+        val dialog = TodoDialogFragment.new(item)
+        dialog.onUpdate = { (item) -> save(item) }
+        dialog.show(getFragmentManager()!!, "todoDialog")
+    }
 
     fun load() = object : AsyncTask<Void, Void, Cursor>() {
         override fun doInBackground(vararg params: Void?): Cursor? {
