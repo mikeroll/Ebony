@@ -33,6 +33,7 @@ public object Database {
 
     fun upsert(item: TodoItem) {
         val entry = ContentValues()
+        if (item.id != -1.toLong()) entry.put(Todos._ID, item.id)
         entry.put(Todos.KEY_CONTENT, item.content)
         entry.put(Todos.KEY_IS_IMPORTANT, item.important)
         item.id = getDb().insertWithOnConflict(Todos.TABLE, null, entry, SQLiteDatabase.CONFLICT_REPLACE)
