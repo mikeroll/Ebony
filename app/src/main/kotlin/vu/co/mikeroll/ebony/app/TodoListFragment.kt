@@ -12,6 +12,9 @@ import android.view.ViewGroup
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Adapter
+import android.view.Menu
+import android.view.MenuItem
+import android.view.MenuInflater
 
 public class TodoListFragment() : Fragment() {
 
@@ -21,6 +24,7 @@ public class TodoListFragment() : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_todo_list, container, false)
         listView = v?.findViewById(R.id.todo_list) as ListView?
+        setHasOptionsMenu(true)
         return v
     }
 
@@ -30,16 +34,34 @@ public class TodoListFragment() : Fragment() {
         Database.connect(ctx)
         adapter = TodoListAdapter(ctx)
         listView?.setAdapter(adapter!!)
-        listView?.setOnItemClickListener { (lv, v, pos, id) -> showTodoDialog(lv, pos) }
+        listView?.setOnItemClickListener { (lv, v, pos, id) -> open(lv, pos) }
         load()
     }
 
-    fun showTodoDialog(lv: AdapterView<out Adapter?>, pos: Int) {
-        val row = lv.getItemAtPosition(pos) as Cursor
-        val item = TodoItem(row)
+    override fun onCreateOptionsMenu(menu : Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.ebony_main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item : MenuItem?) : Boolean {
+        when (item?.getItemId()) {
+            R.id.action_settings -> return true
+            R.id.action_new -> { new(); return true }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showItem(item: TodoItem) {
         val dialog = TodoDialogFragment.new(item)
         dialog.onUpdate = { (item) -> save(item) }
         dialog.show(getFragmentManager()!!, "todoDialog")
+    }
+
+    fun new() = showItem(TodoItem("", false))
+
+    fun open(lv: AdapterView<out Adapter?>, pos: Int) {
+        val row = lv.getItemAtPosition(pos) as Cursor
+        showItem(TodoItem(row))
     }
 
     fun load() = object : AsyncTask<Void, Void, Cursor>() {
