@@ -2,6 +2,7 @@ package vu.co.mikeroll.ebony.db
 
 import android.os.Parcelable
 import android.os.Parcel
+import android.database.Cursor
 
 public data class TodoItem(var content: String, var important: Boolean, var id: Long = -1) : Parcelable {
 
@@ -22,3 +23,6 @@ public data class TodoItem(var content: String, var important: Boolean, var id: 
         }
     }
 }
+
+public fun TodoItem(row: Cursor) : TodoItem =
+    TodoItem(row.getString(1) ?: "" , row.getInt(2) != 0, row.getLong(0))
