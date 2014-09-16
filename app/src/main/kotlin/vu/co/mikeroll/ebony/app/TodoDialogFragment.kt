@@ -49,6 +49,7 @@ public class TodoDialogFragment private() : DialogFragment() {
     private fun update() {
         val newContent = edit!!.getText().toString()
         if (item!!.content != newContent) {
+            item!!.content = newContent
             onUpdate(item!!)
         }
     }
