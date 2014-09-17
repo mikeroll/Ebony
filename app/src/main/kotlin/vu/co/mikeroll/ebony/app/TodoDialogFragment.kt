@@ -9,6 +9,7 @@ import android.app.DialogFragment
 import android.widget.EditText
 import android.widget.ImageButton
 import android.view.Window
+import android.widget.ToggleButton
 
 public class TodoDialogFragment private() : DialogFragment() {
 
@@ -26,6 +27,7 @@ public class TodoDialogFragment private() : DialogFragment() {
         private set
     private var edit: EditText? = null
     private var okButton: ImageButton? = null
+    private var importantButton: ToggleButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,8 @@ public class TodoDialogFragment private() : DialogFragment() {
         edit!!.append(item!!.content)
         okButton = view.findViewById(R.id.dlg_ok_btn) as ImageButton
         okButton!!.setOnClickListener { update(); dismiss() }
+        importantButton = view.findViewById(R.id.dlg_important_btn) as ToggleButton
+        importantButton!!.setChecked(item!!.important)
         return view
     }
 
@@ -50,8 +54,10 @@ public class TodoDialogFragment private() : DialogFragment() {
 
     private fun update() {
         val newContent = edit!!.getText().toString()
-        if (item!!.content != newContent) {
+        val newIsImportant = importantButton!!.isChecked()
+        if (item!!.content != newContent || item!!.important != newIsImportant) {
             item!!.content = newContent
+            item!!.important = newIsImportant
             onUpdate(item!!)
         }
     }
