@@ -6,5 +6,7 @@
     <string name="action_new">New</string>
     <string name="todo_important_yes">Important!</string>
     <string name="todo_important_no">Important?</string>
+    <string name="todo_hint">Something</string>
+    <string name="todo_error_empty">Please enter something</string>
 
 </resources>

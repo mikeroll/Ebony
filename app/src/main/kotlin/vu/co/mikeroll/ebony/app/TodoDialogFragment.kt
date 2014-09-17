@@ -40,14 +40,16 @@ public class TodoDialogFragment private() : DialogFragment() {
         edit = view.findViewById(R.id.dlg_content) as EditText
         edit!!.append(item!!.content)
         okButton = view.findViewById(R.id.dlg_ok_btn) as ImageButton
-        okButton!!.setOnClickListener { update(); dismiss() }
+        okButton!!.setOnClickListener { if (check()) { update(); dismiss() } }
         importantButton = view.findViewById(R.id.dlg_important_btn) as ToggleButton
         importantButton!!.setChecked(item!!.important)
         return view
     }
 
-    trait OnUpdateListener {
-        fun onUpdate(item : TodoItem)
+    private fun check(): Boolean {
+        val empty = edit!!.getText().toString().trim().equalsIgnoreCase("")
+        if (empty) edit!!.setError(getResources()?.getString(R.string.todo_error_empty))
+        return !empty
     }
 
     var onUpdate : (TodoItem) -> Unit = {}
