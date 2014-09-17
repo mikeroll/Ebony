@@ -11,7 +11,7 @@ import android.widget.ImageButton
 import android.view.Window
 import android.widget.ToggleButton
 
-public class TodoDialogFragment private() : DialogFragment() {
+public class TodoDialogFragment() : DialogFragment() {
 
     class object {
         fun new(item: TodoItem): TodoDialogFragment {
