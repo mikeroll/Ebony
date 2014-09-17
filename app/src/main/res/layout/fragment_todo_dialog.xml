@@ -14,7 +14,7 @@
             style="@style/Ebony.TodoView.Content"/>
 
     <ToggleButton
-            android:id="@+id/important_btn"
+            android:id="@+id/dlg_important_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"

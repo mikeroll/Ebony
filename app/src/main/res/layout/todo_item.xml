@@ -10,15 +10,18 @@
         android:id="@+id/todo_important_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:focusable="false"/>
+        android:layout_margin="10dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:button="@drawable/ic_important"/>
 
     <TextView
         android:id="@+id/todo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="2dp"
         android:maxLines="3"
         android:gravity="center_vertical"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"/>
+            />
 
 </LinearLayout>
