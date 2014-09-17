@@ -21,7 +21,31 @@
         <item name="android:divider">@null</item>
         <item name="android:dividerHeight">0dp</item>
         <item name="android:listSelector">@android:color/transparent</item>
+    </style>
 
+    <!-- TodoView -->
+    <style name="Ebony.TodoView.Content" parent="android:Theme.Holo.Light">
+        <item name="android:background">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">10pt</item>
+    </style>
+    <style name="Ebony.TodoView.OKButton" parent="android:Theme.Holo.Light">
+        <item name="android:background">@null</item>
+        <item name="android:src">@drawable/ic_action_ok</item>
+        <item name="android:padding">16dp</item>
+    </style>
+    <style name="Ebony.TodoView.Important" parent="android:Theme.Holo.Light">
+       <item name="android:paddingLeft">20dp</item>
+       <item name="android:drawableLeft">@drawable/ic_important</item>
+       <item name="android:drawablePadding">6dp</item>
+       <item name="android:textColor">@color/todo_important_color</item>
+       <item name="android:textOn">@string/todo_important_yes</item>
+       <item name="android:textOff">@string/todo_important_no</item>
+       <item name="android:gravity">left|center_vertical</item>
+       <item name="android:background">@null</item>
     </style>
 
 

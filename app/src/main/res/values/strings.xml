@@ -4,5 +4,7 @@
     <string name="app_name">Ebony</string>
     <string name="action_settings">Settings</string>
     <string name="action_new">New</string>
+    <string name="todo_important_yes">Important!</string>
+    <string name="todo_important_no">Important?</string>
 
 </resources>

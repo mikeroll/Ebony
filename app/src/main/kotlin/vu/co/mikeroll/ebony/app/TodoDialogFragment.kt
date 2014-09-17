@@ -8,6 +8,7 @@ import android.view.View
 import android.app.DialogFragment
 import android.widget.EditText
 import android.widget.ImageButton
+import android.view.Window
 
 public class TodoDialogFragment private() : DialogFragment() {
 
@@ -32,6 +33,7 @@ public class TodoDialogFragment private() : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        getDialog()?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val view = inflater.inflate(R.layout.fragment_todo_dialog, container)!!
         edit = view.findViewById(R.id.dlg_content) as EditText
         edit!!.append(item!!.content)
