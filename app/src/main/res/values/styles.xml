@@ -17,7 +17,8 @@
 
     <!-- Main ListView -->
     <style name="Ebony.TodoList" parent="android:Theme.Holo.Light">
-        <item name="android:padding">5dp</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:clipToPadding">false</item>
         <item name="android:divider">@null</item>
         <item name="android:dividerHeight">0dp</item>
         <item name="android:listSelector">@android:color/transparent</item>
