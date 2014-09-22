@@ -43,7 +43,7 @@ public object Database {
         return getDb().query(Todos.TABLE, null, null, null, null, null, null)
     }
 
-    fun delete(item: TodoItem) {
-        getDb().delete(Todos.TABLE, "${Todos._ID} = ?", array(item.id.toString()))
+    fun delete(id: Long) {
+        getDb().delete(Todos.TABLE, "${Todos._ID} = ?", array(id.toString()))
     }
 }
