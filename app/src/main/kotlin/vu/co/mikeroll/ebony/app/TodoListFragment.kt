@@ -15,14 +15,13 @@ import android.widget.Adapter
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MenuInflater
-import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.SimpleSwipeUndoAdapter
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback
 
 public class TodoListFragment() : Fragment() {
 
     var listView : ListView? = null
     var adapter: TodoListAdapter? = null
-    var swipeAdapter: SwipeDismissAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_todo_list, container, false)
@@ -36,9 +35,9 @@ public class TodoListFragment() : Fragment() {
         val ctx = getActivity()!!
         Database.connect(ctx)
         adapter = TodoListAdapter(ctx)
-        swipeAdapter = SwipeDismissAdapter(adapter, onDeleteCallback)
-        swipeAdapter?.setAbsListView(listView)
-        listView?.setAdapter(swipeAdapter!!)
+        val swipeAdapter = SimpleSwipeUndoAdapter(adapter!!, getActivity()!!, onDeleteCallback)
+        swipeAdapter.setAbsListView(listView)
+        listView?.setAdapter(swipeAdapter)
         listView?.setOnItemClickListener { (lv, v, pos, id) -> open(lv, pos) }
         load()
     }
