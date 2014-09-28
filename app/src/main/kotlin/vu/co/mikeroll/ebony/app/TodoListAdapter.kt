@@ -1,14 +1,16 @@
 package vu.co.mikeroll.ebony.app
 
-import android.widget.ResourceCursorAdapter
 import android.content.Context
-import android.view.View
 import android.database.Cursor
-import android.widget.CheckBox
-import android.widget.TextView
-import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.UndoAdapter
-import android.view.ViewGroup
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.ResourceCursorAdapter
+import android.widget.TextView
+
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.UndoAdapter
+
 import vu.co.mikeroll.ebony.db.Todos
 
 public class TodoListAdapter(val ctx: Context) : ResourceCursorAdapter(ctx, R.layout.todo_item, null), UndoAdapter {

@@ -1,8 +1,8 @@
 package vu.co.mikeroll.ebony.db
 
-import android.os.Parcelable
-import android.os.Parcel
 import android.database.Cursor
+import android.os.Parcel
+import android.os.Parcelable
 
 public data class TodoItem(var content: String, var important: Boolean, var id: Long = -1) : Parcelable {
 

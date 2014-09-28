@@ -1,15 +1,16 @@
 package vu.co.mikeroll.ebony.app
 
-import vu.co.mikeroll.ebony.db.TodoItem
+import android.app.DialogFragment
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.view.View
-import android.app.DialogFragment
+import android.view.ViewGroup
+import android.view.Window
 import android.widget.EditText
 import android.widget.ImageButton
-import android.view.Window
 import android.widget.ToggleButton
+
+import vu.co.mikeroll.ebony.db.TodoItem
 
 public class TodoDialogFragment() : DialogFragment() {
 

@@ -1,8 +1,8 @@
 package vu.co.mikeroll.ebony.db
 
 import android.content.Context
-import android.database.sqlite.SQLiteOpenHelper
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
 
 private class Helper(ctx: Context)
               : SQLiteOpenHelper(ctx, DATABASE_NAME, null, DATABASE_VERSION) {

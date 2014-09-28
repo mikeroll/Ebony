@@ -1,22 +1,24 @@
 package vu.co.mikeroll.ebony.app
 
-import android.os.Bundle
-import vu.co.mikeroll.ebony.db.Database
-import android.os.AsyncTask
-import android.database.Cursor
-import vu.co.mikeroll.ebony.db.TodoItem
 import android.app.Fragment
-import android.widget.ListView
+import android.database.Cursor
+import android.os.AsyncTask
+import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.view.View
-import android.widget.AdapterView
-import android.widget.Adapter
 import android.view.Menu
-import android.view.MenuItem
 import android.view.MenuInflater
-import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.SimpleSwipeUndoAdapter
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.AdapterView
+import android.widget.ListView
+
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.SimpleSwipeUndoAdapter
+
+import vu.co.mikeroll.ebony.db.Database
+import vu.co.mikeroll.ebony.db.TodoItem
 
 public class TodoListFragment() : Fragment() {
 
