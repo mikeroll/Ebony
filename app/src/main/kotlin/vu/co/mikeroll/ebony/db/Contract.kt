@@ -15,7 +15,7 @@ private val SQL_CREATE_TABLE: String =
 private val SQL_DROP_TABLE: String =
         "DROP TABLE IF EXISTS " + Todos.TABLE
 
-private abstract class Todos {
+public abstract class Todos {
     public class object {
         val _ID: String = BaseColumns._ID
         val _COUNT: String = BaseColumns._COUNT
