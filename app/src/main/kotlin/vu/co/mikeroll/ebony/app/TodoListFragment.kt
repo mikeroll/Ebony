@@ -19,11 +19,16 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.Simple
 
 import vu.co.mikeroll.ebony.db.Database
 import vu.co.mikeroll.ebony.db.TodoItem
+import vu.co.mikeroll.ebony.appwidget.EbonyWidgetProvider
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
+import android.content.Context
 
 public class TodoListFragment() : Fragment() {
 
-    var listView : ListView? = null
-    var adapter: TodoListAdapter? = null
+    private var activity: Context? = null
+    private var listView: ListView? = null
+    private var adapter: TodoListAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_todo_list, container, false)
@@ -34,10 +39,10 @@ public class TodoListFragment() : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val ctx = getActivity()!!
-        Database.connect(ctx)
-        adapter = TodoListAdapter(ctx)
-        val swipeAdapter = SimpleSwipeUndoAdapter(adapter!!, getActivity()!!, onDeleteCallback)
+        activity = getActivity()
+        Database.connect(activity!!)
+        adapter = TodoListAdapter(activity!!)
+        val swipeAdapter = SimpleSwipeUndoAdapter(adapter!!, activity!!, onDeleteCallback)
         swipeAdapter.setAbsListView(listView)
         listView?.setAdapter(swipeAdapter)
         listView?.setOnItemClickListener { (lv, v, pos, id) -> open(lv, pos) }
@@ -76,6 +81,7 @@ public class TodoListFragment() : Fragment() {
         }
         override fun onPostExecute(result: Cursor) {
             adapter?.changeCursor(result)
+            updateWidgets()
         }
     }.execute()
 
@@ -105,5 +111,12 @@ public class TodoListFragment() : Fragment() {
             adapter!!.swapCursor(SwipeCursorWrapper(adapter!!.getCursor()!!, pos[0]))
             delete(id)
         }
+    }
+
+    fun updateWidgets() {
+        val appContext = activity!!.getApplicationContext()!!
+        val widgetManager = AppWidgetManager.getInstance(appContext)!!
+        val ids = widgetManager.getAppWidgetIds(ComponentName(appContext, javaClass<EbonyWidgetProvider>()))
+        widgetManager.notifyAppWidgetViewDataChanged(ids, R.id.widget_todo_list)
     }
 }

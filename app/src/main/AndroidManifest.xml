@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <!-- Widget -->
-        <receiver android:name="EbonyWidgetProvider">
+        <receiver android:name="vu.co.mikeroll.ebony.appwidget.EbonyWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
@@ -26,6 +26,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/ebony_appwidget_info"/>
         </receiver>
+        <service android:name="vu.co.mikeroll.ebony.appwidget.EbonyWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
     </application>
 
 </manifest>

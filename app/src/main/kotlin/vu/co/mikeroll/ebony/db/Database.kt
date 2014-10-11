@@ -39,8 +39,8 @@ public object Database {
         item.id = getDb().insertWithOnConflict(Todos.TABLE, null, entry, SQLiteDatabase.CONFLICT_REPLACE)
     }
 
-    fun selectAll() : Cursor? {
-        return getDb().query(Todos.TABLE, null, null, null, null, null, null)
+    fun selectAll() : Cursor {
+        return getDb().query(Todos.TABLE, null, null, null, null, null, null)!!
     }
 
     fun delete(id: Long) {
