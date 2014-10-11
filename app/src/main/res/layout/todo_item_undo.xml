@@ -4,19 +4,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="72dp">
+    android:layout_height="72dp"
+    android:padding="12dp">
 
     <TextView
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="match_parent"
-            android:text="Done?"
-            android:gravity="center"/>
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="match_parent"
+        android:text="@string/todo_delete_ok"
+        style="@style/Ebony.TodoView.Undo.DeleteOk"/>
 
     <Button
-            android:id="@+id/undo_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="no"/>
+        android:id="@+id/undo_btn"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/todo_delete_undo"
+        style="@style/Ebony.TodoView.Undo.UndoBtn"/>
 </LinearLayout>
