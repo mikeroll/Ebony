@@ -91,7 +91,7 @@ public class TodoListFragment() : Fragment() {
 
     fun delete(id: Long) = object : AsyncTask<Long, Void, Void>() {
         override fun doInBackground(vararg ids: Long?): Void? {
-            Database.delete(id)
+            Database.delete(ids[0]!!)
             return null
         }
         override fun onPostExecute(result: Void) {
@@ -102,6 +102,7 @@ public class TodoListFragment() : Fragment() {
     val onDeleteCallback = object : OnDismissCallback {
         override fun onDismiss(lv: ViewGroup?, pos: IntArray?) {
             val id = (adapter?.getItem(pos!![0]) as Cursor).getLong(0)
+            adapter!!.swapCursor(SwipeCursorWrapper(adapter!!.getCursor()!!, pos[0]))
             delete(id)
         }
     }
