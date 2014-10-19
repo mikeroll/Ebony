@@ -1,6 +1,9 @@
 package vu.co.mikeroll.ebony.app
 
 import android.app.Fragment
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
+import android.content.Context
 import android.database.Cursor
 import android.os.AsyncTask
 import android.os.Bundle
@@ -20,9 +23,6 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.Simple
 import vu.co.mikeroll.ebony.db.Database
 import vu.co.mikeroll.ebony.db.TodoItem
 import vu.co.mikeroll.ebony.appwidget.EbonyWidgetProvider
-import android.appwidget.AppWidgetManager
-import android.content.ComponentName
-import android.content.Context
 
 public class TodoListFragment() : Fragment() {
 
@@ -85,31 +85,31 @@ public class TodoListFragment() : Fragment() {
         }
     }.execute()
 
-    fun save(item: TodoItem) = object : AsyncTask<TodoItem, Void, Void>() {
-        override fun doInBackground(vararg items: TodoItem?): Void? {
-            Database.upsert(items[0]!!)
+    fun save(item: TodoItem) = object : AsyncTask<Void, Void, Void>() {
+        override fun doInBackground(vararg voids: Void?): Void? {
+            Database.upsert(item)
             return null
         }
-        override fun onPostExecute(result: Void) {
+        override fun onPostExecute(result: Void?) {
             load()
         }
-    }.execute(item)
+    }.execute()
 
-    fun delete(id: Long) = object : AsyncTask<Long, Void, Void>() {
-        override fun doInBackground(vararg ids: Long?): Void? {
-            Database.delete(ids[0]!!)
+    fun delete(ids: Array<Long>) = object : AsyncTask<Void, Void, Void>() {
+        override fun doInBackground(vararg voids: Void?): Void? {
+            Database.delete(ids)
             return null
         }
-        override fun onPostExecute(result: Void) {
+        override fun onPostExecute(result: Void?) {
             load()
         }
-    }.execute(id)
+    }.execute()
 
     val onDeleteCallback = object : OnDismissCallback {
         override fun onDismiss(lv: ViewGroup?, pos: IntArray?) {
-            val id = (adapter?.getItem(pos!![0]) as Cursor).getLong(0)
-            adapter!!.swapCursor(SwipeCursorWrapper(adapter!!.getCursor()!!, pos[0]))
-            delete(id)
+            val ids = Array(pos!!.size, { p -> adapter!!.getItemId(pos[p]) })
+            adapter!!.swapCursor(SwipeCursorWrapper(adapter!!.getCursor()!!, pos))
+            delete(ids)
         }
     }
 
