@@ -95,7 +95,7 @@ public class TodoListFragment() : Fragment() {
         }
     }.execute()
 
-    fun delete(ids: Array<Long>) = object : AsyncTask<Void, Void, Void>() {
+    fun delete(ids: List<Long>) = object : AsyncTask<Void, Void, Void>() {
         override fun doInBackground(vararg voids: Void?): Void? {
             Database.delete(ids)
             return null
@@ -107,8 +107,8 @@ public class TodoListFragment() : Fragment() {
 
     val onDeleteCallback = object : OnDismissCallback {
         override fun onDismiss(lv: ViewGroup?, pos: IntArray?) {
-            val ids = Array(pos!!.size, { p -> adapter!!.getItemId(pos[p]) })
-            adapter!!.swapCursor(SwipeCursorWrapper(adapter!!.getCursor()!!, pos))
+            val ids = pos!!.map({p -> adapter!!.getItemId(p)})
+            adapter!!.swapCursor(SwipeCursorWrapper(adapter!!.getCursor()!!, pos.toList()))
             delete(ids)
         }
     }

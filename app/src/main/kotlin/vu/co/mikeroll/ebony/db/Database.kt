@@ -43,7 +43,7 @@ public object Database {
         return getDb().query(Todos.TABLE, null, null, null, null, null, null)!!
     }
 
-    fun delete(ids: Array<Long>) {
+    fun delete(ids: List<Long>) {
         getDb().delete(Todos.TABLE, "${Todos._ID} IN (${ids.joinToString()})", null)
     }
 }
