@@ -7,6 +7,8 @@ import android.content.Intent
 import android.widget.RemoteViews
 import vu.co.mikeroll.ebony.app.R
 import android.net.Uri
+import vu.co.mikeroll.ebony.app.EbonyMain
+import android.app.PendingIntent
 
 public class EbonyWidgetProvider() : AppWidgetProvider() {
     override fun onUpdate(context: Context?, appWidgetManager: AppWidgetManager?, appWidgetIds: IntArray?) {
@@ -17,6 +19,10 @@ public class EbonyWidgetProvider() : AppWidgetProvider() {
             val rvs = RemoteViews(context.getPackageName(), R.layout.widget_todo_list)
             rvs.setRemoteAdapter(R.id.widget_todo_list, intent)
             appWidgetManager?.updateAppWidget(appWidgetId, rvs)
+
+            val ebonyIntent = Intent(context, javaClass<EbonyMain>())
+            val pendingEbonyIntent = PendingIntent.getActivity(context, 0, intent, 0)
+            rvs.setOnClickPendingIntent(R.id.widget, pendingEbonyIntent)
         }
         super.onUpdate(context, appWidgetManager, appWidgetIds)
     }

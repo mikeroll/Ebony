@@ -17,6 +17,7 @@ import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ListView
 
+import com.jakewharton.kotterknife.*
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.SimpleSwipeUndoAdapter
 
@@ -27,14 +28,12 @@ import vu.co.mikeroll.ebony.appwidget.EbonyWidgetProvider
 public class TodoListFragment() : Fragment() {
 
     private var activity: Context? = null
-    private var listView: ListView? = null
+    private val listView: ListView by bindView(R.id.todo_list)
     private var adapter: TodoListAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_todo_list, container, false)
-        listView = v?.findViewById(R.id.todo_list) as ListView?
         setHasOptionsMenu(true)
-        return v
+        return inflater.inflate(R.layout.fragment_todo_list, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -44,8 +43,8 @@ public class TodoListFragment() : Fragment() {
         adapter = TodoListAdapter(activity!!)
         val swipeAdapter = SimpleSwipeUndoAdapter(adapter!!, activity!!, onDeleteCallback)
         swipeAdapter.setAbsListView(listView)
-        listView?.setAdapter(swipeAdapter)
-        listView?.setOnItemClickListener { (lv, v, pos, id) -> open(lv, pos) }
+        listView.setAdapter(swipeAdapter)
+        listView.setOnItemClickListener { (lv, v, pos, id) -> open(lv, pos) }
         load()
     }
 

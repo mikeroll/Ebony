@@ -16,12 +16,8 @@ import vu.co.mikeroll.ebony.db.Todos
 public class TodoListAdapter(val ctx: Context) : ResourceCursorAdapter(ctx, R.layout.todo_item, null), UndoAdapter {
 
     class ViewHolder(v: View) {
-        val contentView: TextView
-        val importantView: CheckBox
-        {
-            contentView = v.findViewById(R.id.todo_text) as TextView
-            importantView = v.findViewById(R.id.todo_important_btn) as CheckBox
-        }
+        val contentView = v.findViewById(R.id.todo_text) as TextView
+        val importantView = v.findViewById(R.id.todo_important_btn) as CheckBox
     }
 
     override fun newView(context: Context?, cursor: Cursor?, parent: ViewGroup?): View {
