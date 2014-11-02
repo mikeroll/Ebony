@@ -11,24 +11,17 @@ public object Database {
     private var dbHelper: SQLiteOpenHelper? = null
 
     public fun connect(ctx: Context) : Database {
-        if (dbHelper == null) {
-            dbHelper = Helper(ctx)
-        }
+        dbHelper = dbHelper ?: Helper(ctx)
         return this
     }
 
     protected fun finalize() {
-        if (dbHelper != null) {
-            dbHelper!!.close()
-        }
+        dbHelper?.close()
     }
 
     private fun getDb() : SQLiteDatabase {
-        if (dbHelper != null) {
-            return dbHelper!!.getWritableDatabase()!!
-        } else {
-            throw IllegalStateException("You should open a DB connection first.")
-        }
+        return dbHelper?.getWritableDatabase()
+            ?: throw IllegalStateException("You should open a DB connection first.")
     }
 
     fun upsert(item: TodoItem) {
