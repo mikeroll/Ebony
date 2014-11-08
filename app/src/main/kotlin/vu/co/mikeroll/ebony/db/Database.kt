@@ -11,7 +11,7 @@ public object Database {
     private var dbHelper: SQLiteOpenHelper? = null
 
     public fun connect(ctx: Context) : Database {
-        dbHelper = dbHelper ?: Helper(ctx)
+        dbHelper = dbHelper ?: Helper(ctx.getApplicationContext())
         return this
     }
 

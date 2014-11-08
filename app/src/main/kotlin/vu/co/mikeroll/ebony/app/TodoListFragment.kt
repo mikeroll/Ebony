@@ -39,7 +39,6 @@ public class TodoListFragment() : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         activity = getActivity()
-        Database.connect(activity!!)
         adapter = TodoListAdapter(activity!!)
         val swipeAdapter = SimpleSwipeUndoAdapter(adapter!!, activity!!, onDeleteCallback)
         swipeAdapter.setAbsListView(listView)
