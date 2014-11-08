@@ -13,6 +13,7 @@ import android.widget.ToggleButton
 import com.jakewharton.kotterknife.*
 
 import vu.co.mikeroll.ebony.db.TodoItem
+import android.view.WindowManager
 
 public class TodoDialogFragment() : DialogFragment() {
 
@@ -44,6 +45,9 @@ public class TodoDialogFragment() : DialogFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         edit.append(item!!.content)
+        edit.setOnFocusChangeListener { (v, f) -> if (f) {
+            getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+        }}
         okButton.setOnClickListener { if (check()) { update(); dismiss() } }
         importantButton.setChecked(item!!.important)
         super.onActivityCreated(savedInstanceState)
