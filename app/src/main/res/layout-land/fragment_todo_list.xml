@@ -3,17 +3,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:baselineAligned="false">
 
     <FrameLayout
         android:layout_width="0dp"
-        android:layout_weight="6"
+        android:layout_weight="3"
         android:layout_height="match_parent">
         <ImageView
+            android:id="@+id/todo_list_picture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/flowers"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/flowers"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -25,7 +27,7 @@
     <ListView
         android:id="@+id/todo_list"
         android:layout_width="0dp"
-        android:layout_weight="4"
+        android:layout_weight="2"
         android:layout_height="match_parent"
         style="@style/Ebony.TodoList">
     </ListView>
