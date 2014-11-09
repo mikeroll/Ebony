@@ -13,22 +13,17 @@
             android:id="@+id/todo_list_picture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/flowers"/>
+            android:src="@drawable/flowers"
+            android:scaleType="centerCrop"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:src="@drawable/shadow_top"
-            android:scaleType="fitXY"
-            android:layout_gravity="bottom"/>
+            android:scaleType="fitXY"/>
     </FrameLayout>
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:id="@+id/todo_list"
-        style="@style/Ebony.TodoList">
-    </ListView>
-
-
+    <include layout="@layout/todo_list"
+             android:layout_width="match_parent"
+             android:layout_height="0dp"
+             android:layout_weight="5"/>
 </LinearLayout>

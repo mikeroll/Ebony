@@ -24,11 +24,9 @@
             android:scaleType="fitXY"
             android:layout_gravity="end"/>
     </FrameLayout>
-    <ListView
-        android:id="@+id/todo_list"
-        android:layout_width="0dp"
-        android:layout_weight="2"
-        android:layout_height="match_parent"
-        style="@style/Ebony.TodoList">
-    </ListView>
+    <include layout="@layout/todo_list"
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="2"/>
+
 </LinearLayout>
