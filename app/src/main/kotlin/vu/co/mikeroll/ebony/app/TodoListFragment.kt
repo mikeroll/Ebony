@@ -24,12 +24,14 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.Simple
 import vu.co.mikeroll.ebony.db.Database
 import vu.co.mikeroll.ebony.db.TodoItem
 import vu.co.mikeroll.ebony.appwidget.EbonyWidgetProvider
+import com.shamanland.fab.FloatingActionButton
 
 public class TodoListFragment() : Fragment() {
 
     private var activity: Context? = null
-    private val listView: ListView by bindView(R.id.todo_list)
     private var adapter: TodoListAdapter? = null
+    private val listView: ListView by bindView(R.id.todo_list)
+    private val newButton: FloatingActionButton by bindView(R.id.action_new)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
@@ -44,20 +46,8 @@ public class TodoListFragment() : Fragment() {
         swipeAdapter.setAbsListView(listView)
         listView.setAdapter(swipeAdapter)
         listView.setOnItemClickListener { (lv, v, pos, id) -> open(lv, pos) }
+        newButton.setOnClickListener { new() }
         load()
-    }
-
-    override fun onCreateOptionsMenu(menu : Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.ebony_main, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item : MenuItem?) : Boolean {
-        when (item?.getItemId()) {
-            R.id.action_settings -> return true
-            R.id.action_new -> { new(); return true }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun showItem(item: TodoItem) {

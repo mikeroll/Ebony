@@ -1,8 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="Ebony" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="Ebony" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
         <item name="android:actionBarStyle">@style/Ebony.ActionBar</item>
+        <item name="android:windowActionBar">false</item>
     </style>
 
     <style name="Ebony.ActionBar" parent="android:Widget.Holo.ActionBar">
