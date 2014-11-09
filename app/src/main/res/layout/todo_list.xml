@@ -10,6 +10,14 @@
         android:layout_height="match_parent"
         style="@style/Ebony.TodoList">
     </ListView>
+    <TextView
+        android:id="@+id/todo_list_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="@string/todo_list_empty"
+        style="@style/Ebony.TodoList.Empty"/>
     <com.shamanland.fab.FloatingActionButton
         android:id="@+id/action_new"
         android:layout_width="@dimen/floating_action_button_size_normal"

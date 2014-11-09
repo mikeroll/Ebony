@@ -16,15 +16,16 @@ import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ListView
+import android.widget.TextView
 
 import com.jakewharton.kotterknife.*
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.SimpleSwipeUndoAdapter
+import com.shamanland.fab.FloatingActionButton
 
+import vu.co.mikeroll.ebony.appwidget.EbonyWidgetProvider
 import vu.co.mikeroll.ebony.db.Database
 import vu.co.mikeroll.ebony.db.TodoItem
-import vu.co.mikeroll.ebony.appwidget.EbonyWidgetProvider
-import com.shamanland.fab.FloatingActionButton
 
 public class TodoListFragment() : Fragment() {
 
@@ -32,6 +33,7 @@ public class TodoListFragment() : Fragment() {
     private var adapter: TodoListAdapter? = null
     private val listView: ListView by bindView(R.id.todo_list)
     private val newButton: FloatingActionButton by bindView(R.id.action_new)
+    private val emptyView: TextView by bindView(R.id.todo_list_empty)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
@@ -46,6 +48,7 @@ public class TodoListFragment() : Fragment() {
         swipeAdapter.setAbsListView(listView)
         listView.setAdapter(swipeAdapter)
         listView.setOnItemClickListener { (lv, v, pos, id) -> open(lv, pos) }
+        listView.setEmptyView(emptyView)
         newButton.setOnClickListener { new() }
         load()
     }

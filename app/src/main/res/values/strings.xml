@@ -10,5 +10,6 @@
     <string name="todo_error_empty">Please enter something</string>
     <string name="todo_delete_ok"><![CDATA[<<< Done? >>>]]></string>
     <string name="todo_delete_undo">no</string>
+    <string name="todo_list_empty">All clear! ;)</string>
 
 </resources>

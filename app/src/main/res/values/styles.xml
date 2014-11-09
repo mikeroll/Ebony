@@ -21,6 +21,10 @@
         <item name="android:footerDividersEnabled">false</item>
         <item name="android:background">@color/white</item>
     </style>
+    <style name="Ebony.TodoList.Empty">
+        <item name="android:textSize">20pt</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
     <style name="Ebony.TodoItem">
         <item name="android:layout_height">60dp</item>\
     </style>
